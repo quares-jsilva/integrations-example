@@ -72,8 +72,6 @@ jobs:
         run: npm run test
       - name: Display Coverage
         uses: ArtiomTr/jest-coverage-report-action@v2
-        with:
-          github-token: ${{ github.token }}
 
 
 

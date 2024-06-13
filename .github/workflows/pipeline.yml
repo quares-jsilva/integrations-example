@@ -3,7 +3,7 @@ name: Deployment Pipeline
 on: 
   push:
     branches: [main]
-  pull_request_target:
+  pull_request:
     branches: [main]
     types: [opened, synchronize]
 
@@ -70,10 +70,8 @@ jobs:
           path: .next
       - name: Run Tests
         run: npm run test
-      - name: Display Coverage
-        uses: ArtiomTr/jest-coverage-report-action@v2
-        with:
-          github-token: ${{ github.token }}
+      - name: Jest Coverage Comment
+        uses: MishaKav/jest-coverage-comment@main
 
 
 

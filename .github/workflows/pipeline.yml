@@ -66,3 +66,30 @@ jobs:
           path: .next
       - name: Run Tests
         run: npm run test
+      - name: Display Coverage
+        uses: ArtiomTr/jest-coverage-report-action@v2
+
+  # deploy:
+  #   runs-on: ubuntu-20.04
+  #   needs: [tests]
+  #   environment:
+  #     name: 'Production'
+  #     url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+  #   steps:
+  #     - name: Download artifact from build jobs
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: integrations-example
+  #         path: .next
+  #     - name: 'Deploy to Azure Web App'
+  #       uses: azure/webapps-deploy@v2
+  #       id: deploy-to-webapp
+  #       with:
+  #         app-name: 'integrations-example'
+  #         slot-name: 'Production'
+  #         publish-profile: ${{ secrets.AZURE_WEB_APP_PUBLISH_PROFILE }}
+  #         package: .
+          
+    
+    

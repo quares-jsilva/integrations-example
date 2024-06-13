@@ -51,6 +51,10 @@ jobs:
   tests:
     needs: [lint, build]
     runs-on: ubuntu-20.04
+    permissions:
+          checks: write
+          pull-requests: write
+          contents: write
     steps:
       - uses: actions/checkout@v4
         with:

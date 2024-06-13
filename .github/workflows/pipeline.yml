@@ -74,16 +74,11 @@ jobs:
         uses: MishaKav/jest-coverage-comment@main
         with:
           coverage-summary-path: ./coverage/coverage-final.json
-          title: My Jest Coverage Comment
-          summary-title: My Summary Title
+          title: Coverage Tests
           badge-title: Coverage
           hide-comment: false
           create-new-comment: false
           hide-summary: false
-          junitxml-title: My JUnit Title
-          junitxml-path: ./coverage/junit.xml
-          coverage-title: My Coverage Title
-          coverage-path: ./coverage.txt
 
 
 

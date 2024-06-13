@@ -3,7 +3,7 @@ name: Deployment Pipeline
 on: 
   push:
     branches: [main]
-  pull_request_target:
+  pull_request:
     branches: [main]
     types: [opened, synchronize]
 
@@ -51,6 +51,10 @@ jobs:
   tests:
     needs: [lint, build]
     runs-on: ubuntu-20.04
+    permissions:
+          checks: write
+          pull-requests: write
+          contents: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -66,10 +70,22 @@ jobs:
           path: .next
       - name: Run Tests
         run: npm run test
-      - name: Display Coverage
-        uses: ArtiomTr/jest-coverage-report-action@v2
+      - name: Jest Coverage Comment
+        uses: MishaKav/jest-coverage-comment@main
         with:
-          github-token: ${{ secrets.SECRET_TOKEN }}
+          coverage-summary-path: ./coverage/coverage-final.json
+          title: My Jest Coverage Comment
+          summary-title: My Summary Title
+          badge-title: Coverage
+          hide-comment: false
+          create-new-comment: false
+          hide-summary: false
+          junitxml-title: My JUnit Title
+          junitxml-path: ./coverage/junit.xml
+          coverage-title: My Coverage Title
+          coverage-path: ./coverage.txt
+
+
 
   # deploy:
   #   runs-on: ubuntu-20.04
